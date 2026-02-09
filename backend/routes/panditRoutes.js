@@ -50,6 +50,22 @@ router.get('/my-profile/:userId', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedPandit = await Pandit.findByIdAndDelete(id);
+
+    if (!deletedPandit) {
+      return res.status(404).json({ error: "Pandit not found" });
+    }
+
+    res.json({ message: "Pandit deleted successfully!" });
+  } catch (err) {
+    console.error("❌ Delete Error:", err);
+    res.status(500).json({ error: "Server error while deleting pandit" });
+  }
+});
+
 // --- 4. GET SINGLE PANDIT BY DOCUMENT ID ---
 router.get('/:id', async (req, res) => {
   try {
