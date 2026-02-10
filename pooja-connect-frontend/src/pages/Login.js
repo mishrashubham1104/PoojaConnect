@@ -26,7 +26,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await axios.post('https://poojaconnect.onrender.com/api/auth/login', { email, password });
+      const res = await axios.post('https://localhost:3000/api/auth/login', { email, password });
       
       const { token, userId, userName, role } = res.data;
       
@@ -45,7 +45,7 @@ const Login = () => {
       else if (role === 'pandit') {
         // 🚀 Check if this Pandit has already filled their professional details
         try {
-          const profileCheck = await axios.get(`https://poojaconnect.onrender.com/api/pandits/my-profile/${userId}`);
+          const profileCheck = await axios.get(`https://localhost:3000/api/pandits/my-profile/${userId}`);
           
           if (profileCheck.data && profileCheck.data._id) {
             // Profile exists -> Dashboard

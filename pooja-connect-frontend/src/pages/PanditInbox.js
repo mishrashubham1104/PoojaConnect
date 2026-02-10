@@ -20,7 +20,7 @@ const PanditInbox = () => {
 
       try {
         // Updated route to get users with their last message data
-        const res = await axios.get(`https://poojaconnect.onrender.com/api/chat/inbox/${panditId}`);
+        const res = await axios.get(`https://localhost:3000/api/chat/inbox/${panditId}`);
         setConversations(res.data);
       } catch (err) {
         console.error("❌ Frontend Inbox Error:", err);
