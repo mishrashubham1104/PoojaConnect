@@ -68,23 +68,43 @@ const ManageProfile = () => {
     }
   };
 
-  // --- SUBMIT LOGIC ---
+  // --- UPDATED SUBMIT LOGIC ---
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (uploading) return toast.error("Please wait for image upload");
 
+    // Get the userId from localStorage (as you requested)
+    const userId = localStorage.getItem('userId'); 
+
+    if (!userId) {
+      toast.error("User session expired. Please login again.");
+      return navigate('/login');
+    }
+
     try {
+      // Constructing the payload using the current state
       const profileData = {
-        ...formData,
-        userId,
+        userId: userId, // 👈 THE KEY!
+        name: formData.name,
+        specialization: formData.specialization,
+        location: formData.location,
+        experience: formData.experience,
+        bio: formData.bio,
+        image: formData.image,
         languages: formData.languages.split(',').map(l => l.trim())
       };
 
-      await axios.post('https://poojaconnect.onrender.com/api/pandits/profile', profileData);
+      // 🚀 LOGIC FIX:
+      // If profile doesn't exist yet, use '/add'. If it exists, use '/profile'
+      const endpoint = isExistingUser 
+        ? 'https://poojaconnect.onrender.com/api/pandits/profile' 
+        : 'https://poojaconnect.onrender.com/api/pandits/add';
+
+      const res = await axios.post(endpoint, profileData);
 
       const wasNewUser = !isExistingUser;
       setIsExistingUser(true);
-      toast.success(wasNewUser ? "Profile created! Welcome aboard 🙏" : "Profile updated! 🙏");
+      toast.success(wasNewUser ? "Profile activated! 🙏" : "Changes synced! 🙏");
 
       if (wasNewUser) {
         setTimeout(() => {
@@ -92,10 +112,10 @@ const ManageProfile = () => {
         }, 1500);
       }
     } catch (err) {
-      toast.error("Error saving profile.");
+      console.error("Save Error:", err);
+      toast.error(err.response?.data?.error || "Error saving profile details.");
     }
   };
-
   const handleDeleteAccount = async () => {
     if (window.confirm("Are you sure? This will delete everything.")) {
       try {
