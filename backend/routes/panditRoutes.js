@@ -78,6 +78,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post('/add', async (req, res) => {
+  try {
+    const newPandit = new Pandit(req.body);
+    await newPandit.save();
+    res.status(201).json({ message: "Pandit added successfully!", newPandit });
+  } catch (err) {
+    console.error("❌ Manual Add Error:", err);
+    // Check if the error is because a required field is missing
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({ error: "Please fill all required fields" });
+    }
+    res.status(500).json({ error: "Failed to add Pandit to database" });
+  }
+});
+
 // --- 5. MANAGE PROFILE (CREATE OR UPDATE) ---
 router.post('/profile', async (req, res) => {
   try {
