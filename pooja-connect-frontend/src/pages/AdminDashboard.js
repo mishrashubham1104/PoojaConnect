@@ -30,7 +30,7 @@ const AdminDashboard = () => {
     try {
       setLoading(true);
       setError(null);
-      const res = await axios.post('https://pooja-backend.onrender.com/api/auth/admin-login', { email, password });
+      const res = await axios.post('https://poojaconnect.onrender.com/api/auth/admin-login', { email, password });
       
       if (res.data.success) {
         // --- SECURE TOKEN STORAGE ---
@@ -57,10 +57,10 @@ const AdminDashboard = () => {
       const config = getAuthConfig();
 
       const [statsRes, uRes, pRes, bRes] = await Promise.all([
-        axios.get('https://pooja-backend.onrender.com/api/admin/stats', config),
-        axios.get('https://pooja-backend.onrender.com/api/users', config),
-        axios.get('https://pooja-backend.onrender.com/api/pandits', config),
-        axios.get('https://pooja-backend.onrender.com/api/bookings', config)
+        axios.get('https://poojaconnect.onrender.com/api/admin/stats', config),
+        axios.get('https://poojaconnect.onrender.com/api/users', config),
+        axios.get('https://poojaconnect.onrender.com/api/pandits', config),
+        axios.get('https://poojaconnect.onrender.com/api/bookings', config)
       ]);
 
       setStats(statsRes.data);
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
   const deleteItem = async (type, id) => {
     if (!window.confirm(`Permanently remove this ${type}?`)) return;
     try {
-      await axios.delete(`https://pooja-backend.onrender.com/api/${type}/${id}`, getAuthConfig());
+      await axios.delete(`https://poojaconnect.onrender.com/api/${type}/${id}`, getAuthConfig());
       setData(prev => ({ ...prev, [type]: prev[type].filter(item => item._id !== id) }));
       toast.success("Record purged.");
     } catch (err) {

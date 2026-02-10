@@ -69,7 +69,7 @@ const BookingPage = () => {
 
     try {
       // API call to backend
-      const res = await axios.post('https://pooja-backend.onrender.com/api/bookings/create', bookingPayload);
+      const res = await axios.post('https://poojaconnect.onrender.com/api/bookings/create', bookingPayload);
       
       // Simulate checking availability delay
       setTimeout(() => {

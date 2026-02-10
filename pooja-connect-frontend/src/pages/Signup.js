@@ -32,7 +32,7 @@ const Signup = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post('https://pooja-backend.onrender.com/api/auth/register', {
+      await axios.post('https://poojaconnect.onrender.com/api/auth/register', {
         name,
         email,
         password,

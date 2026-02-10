@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post(`https://pooja-backend.onrender.com/api/auth/reset-password/${id}`, { password });
+      const res = await axios.post(`https://poojaconnect.onrender.com/api/auth/reset-password/${id}`, { password });
       toast.success(res.data.message);
       navigate('/login');
     } catch (err) {

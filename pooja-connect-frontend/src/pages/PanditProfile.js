@@ -21,12 +21,12 @@ const PanditProfile = () => {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      // Ensure backend uses localhost:https://pooja-backend.onrender.com for consistency
-      const panditRes = await axios.get(`https://pooja-backend.onrender.com/api/pandits/${id}`);
+      // Ensure backend uses localhost:https://poojaconnect.onrender.com for consistency
+      const panditRes = await axios.get(`https://poojaconnect.onrender.com/api/pandits/${id}`);
       setPandit(panditRes.data);
 
       // --- FIXED URL: Points to the nested review route in panditRoutes.js ---
-      const reviewsRes = await axios.get(`https://pooja-backend.onrender.com/api/pandits/reviews/${id}`);
+      const reviewsRes = await axios.get(`https://poojaconnect.onrender.com/api/pandits/reviews/${id}`);
       
       setReviews(reviewsRes.data.reviews || []);
       setAverageRating(reviewsRes.data.averageRating || 5.0);

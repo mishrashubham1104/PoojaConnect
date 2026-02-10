@@ -4,7 +4,7 @@ const Pandit = require('../models/Pandit');
 const Review = require('../models/Review');
 
 // --- 1. GET REVIEWS FOR A SPECIFIC PANDIT ---
-// URL: GET https://pooja-backend.onrender.com/api/pandits/reviews/:panditId
+// URL: GET https://poojaconnect.onrender.com/api/pandits/reviews/:panditId
 // Note: Placed above generic /:id to avoid route shadowing
 router.get('/reviews/:panditId', async (req, res) => {
   try {
