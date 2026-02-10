@@ -112,6 +112,22 @@ app.post('/api/auth/admin-login', async (req, res) => {
   }
 });
 
+app.delete('/api/users/:id', protectAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found in database" });
+    }
+
+    res.json({ message: "User removed successfully!" });
+  } catch (err) {
+    console.error("❌ User Delete Error:", err);
+    res.status(500).json({ error: "Server error while deleting user" });
+  }
+});
+
 // --- GET ALL DATA FOR ADMIN ---
 app.get('/api/admin/stats', protectAdmin, async (req, res) => {
   try {
