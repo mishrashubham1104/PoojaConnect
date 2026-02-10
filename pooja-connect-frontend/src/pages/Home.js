@@ -16,7 +16,7 @@ const Home = () => {
   const fetchPandits = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/pandits');
+      const response = await axios.get('https://poojaconnect.onrender.com/api/pandits');
       setPandits(response.data);
     } catch (error) {
       console.error("❌ API Error:", error.message);

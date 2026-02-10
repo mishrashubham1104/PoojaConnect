@@ -21,7 +21,7 @@ const server = http.createServer(app);
 // --- 1. FIXED CORS SETUP ---
 // This allows your Vercel frontend to actually talk to your Render backend
 app.use(cors({
-  origin: ["http://localhost:3000", "https://pooja-connect-frontend.vercel.app"],
+  origin: "https://pooja-connect-frontend.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -32,7 +32,7 @@ connectDB();
 // --- 2. FIXED SOCKET.IO SETUP ---
 const io = new Server(server, {
   cors: { 
-    origin: ["http://localhost:3000", "https://pooja-connect-frontend.vercel.app"], 
+    origin: "https://pooja-connect-frontend.vercel.app", 
     methods: ["GET", "POST"] 
   }
 });
@@ -240,5 +240,5 @@ app.post('/api/auth/login', async (req, res) => {
   } catch (err) { res.status(500).json({ error: "Login failed" }); }
 });
 
-const PORT = process.env.PORT || https://pooja-backend.onrender.com;
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
