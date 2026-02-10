@@ -21,7 +21,7 @@ const PanditProfile = () => {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      // Ensure backend uses localhost:5000 for consistency
+      // Ensure backend uses localhost:https://pooja-backend.onrender.com for consistency
       const panditRes = await axios.get(`https://pooja-backend.onrender.com/api/pandits/${id}`);
       setPandit(panditRes.data);
 

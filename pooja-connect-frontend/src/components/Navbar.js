@@ -10,7 +10,7 @@ import {
 // ✅ LogOut, X, and UserCircle removed from imports above as they are now used in MobileSidebar.js
 import MobileSidebar from './MobileSidebar'; 
 
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect('https://pooja-backend.onrender.com');
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -50,7 +50,7 @@ const Navbar = () => {
               </button>
             </span>
           ), { 
-            duration: 5000,
+            duration: 4000,
             style: {
               borderRadius: '16px',
               background: darkMode ? '#111827' : '#fff',

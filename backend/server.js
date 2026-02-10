@@ -240,5 +240,5 @@ app.post('/api/auth/login', async (req, res) => {
   } catch (err) { res.status(500).json({ error: "Login failed" }); }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || https://pooja-backend.onrender.com;
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
