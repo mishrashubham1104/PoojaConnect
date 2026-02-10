@@ -14,7 +14,7 @@ const FindPandit = () => {
   useEffect(() => {
     const fetchPandits = async () => {
       try {
-        const res = await axios.get('https://localhost:3000/api/pandits');
+        const res = await axios.get('https://localhost:5001/api/pandits');
         setPandits(res.data);
       } catch (err) {
         console.error("Error fetching pandits", err);

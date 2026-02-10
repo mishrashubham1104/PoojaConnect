@@ -21,12 +21,12 @@ const PanditProfile = () => {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      // Ensure backend uses localhost:https://localhost:3000 for consistency
-      const panditRes = await axios.get(`https://localhost:3000/api/pandits/${id}`);
+      // Ensure backend uses localhost:https://localhost:5001 for consistency
+      const panditRes = await axios.get(`https://localhost:5001/api/pandits/${id}`);
       setPandit(panditRes.data);
 
       // --- FIXED URL: Points to the nested review route in panditRoutes.js ---
-      const reviewsRes = await axios.get(`https://localhost:3000/api/pandits/reviews/${id}`);
+      const reviewsRes = await axios.get(`https://localhost:5001/api/pandits/reviews/${id}`);
       
       setReviews(reviewsRes.data.reviews || []);
       setAverageRating(reviewsRes.data.averageRating || 5.0);

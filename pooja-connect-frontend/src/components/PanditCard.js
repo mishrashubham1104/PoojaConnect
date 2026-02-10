@@ -22,7 +22,7 @@ const PanditCard = ({ pandit, refreshData }) => {
     if (!window.confirm(`Admin: Are you sure you want to permanently remove ${pandit.name}?`)) return;
 
     try {
-      await axios.delete(`https://localhost:3000/api/pandits/${pandit._id}`, {
+      await axios.delete(`https://localhost:5001/api/pandits/${pandit._id}`, {
         headers: {
           role: userRole // Pass role in headers for backend verification
         }

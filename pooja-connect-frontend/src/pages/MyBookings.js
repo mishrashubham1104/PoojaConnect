@@ -15,7 +15,7 @@ const MyBookings = () => {
     const fetchMyBookings = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`https://localhost:3000/api/bookings/user/${userId}`);
+        const res = await axios.get(`https://localhost:5001/api/bookings/user/${userId}`);
         console.log("My Bookings Data Array:", res.data);
         setBookings(res.data);
       } catch (err) {

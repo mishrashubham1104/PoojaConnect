@@ -30,8 +30,8 @@ const PanditDashboard = () => {
       
       // ✅ FIX: Use the 'my-profile' endpoint to find profile by User ID
       const [profileRes, bookingsRes] = await Promise.all([
-        axios.get(`https://localhost:3000/api/pandits/my-profile/${panditId}`),
-        axios.get(`https://localhost:3000/api/bookings/pandit/${panditId}`)
+        axios.get(`https://localhost:5001/api/pandits/my-profile/${panditId}`),
+        axios.get(`https://localhost:5001/api/bookings/pandit/${panditId}`)
       ]);
 
       // ✅ REDIRECT: If profile doesn't exist, send them to setup
@@ -68,7 +68,7 @@ const PanditDashboard = () => {
 
   const updateStatus = async (bookingId, newStatus, userContext) => {
     try {
-      await axios.put(`https://localhost:3000/api/bookings/${bookingId}`, {
+      await axios.put(`https://localhost:5001/api/bookings/${bookingId}`, {
         status: newStatus,
         userEmail: userContext.email,
         userName: userContext.name,

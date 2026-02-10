@@ -69,7 +69,7 @@ const BookingPage = () => {
 
     try {
       // API call to backend
-      const res = await axios.post('https://localhost:3000/api/bookings/create', bookingPayload);
+      const res = await axios.post('https://localhost:5001/api/bookings/create', bookingPayload);
       
       // Simulate checking availability delay
       setTimeout(() => {

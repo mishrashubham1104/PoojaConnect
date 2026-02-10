@@ -26,7 +26,7 @@ const ManageProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`https://localhost:3000/api/pandits/my-profile/${userId}`);
+        const res = await axios.get(`https://localhost:5001/api/pandits/my-profile/${userId}`);
         if (res.data) {
           setFormData({
             name: res.data.name || '',
@@ -97,8 +97,8 @@ const ManageProfile = () => {
       // 🚀 LOGIC FIX:
       // If profile doesn't exist yet, use '/add'. If it exists, use '/profile'
       const endpoint = isExistingUser 
-        ? 'https://localhost:3000/api/pandits/profile' 
-        : 'https://localhost:3000/api/pandits/add';
+        ? 'https://localhost:5001/api/pandits/profile' 
+        : 'https://localhost:5001/api/pandits/add';
 
      await axios.post(endpoint, profileData);
      const wasNewUser = !isExistingUser;
@@ -118,7 +118,7 @@ const ManageProfile = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm("Are you sure? This will delete everything.")) {
       try {
-        await axios.delete(`https://localhost:3000/api/auth/delete-account/${userId}`);
+        await axios.delete(`https://localhost:5001/api/auth/delete-account/${userId}`);
         localStorage.clear();
         window.location.href = "/";
       } catch (err) {
