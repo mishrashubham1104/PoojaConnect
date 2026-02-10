@@ -28,10 +28,9 @@ const Login = () => {
     try {
       const res = await axios.post('https://poojaconnect.onrender.com/api/auth/login', { email, password });
       
-      // ✅ 1. Store user data in LocalStorage
-      // Note: axios data is in res.data
       const { token, userId, userName, role } = res.data;
       
+      // ✅ Store basic user data
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId);
       localStorage.setItem('userName', userName);
@@ -39,13 +38,30 @@ const Login = () => {
 
       toast.success(`Welcome back, ${userName}!`);
       
-      // ✅ 2. Role-Based Redirection Logic
+      // ✅ UPDATED REDIRECTION LOGIC
       if (role === 'admin') {
         navigate('/admin-dashboard');
-      } else if (role === 'pandit') {
-        navigate('/pandit-dashboard'); // Redirect Pandit to their specific portal
-      } else {
-        navigate('/home'); // Redirect regular Users to the home/booking page
+      } 
+      else if (role === 'pandit') {
+        // 🚀 Check if this Pandit has already filled their professional details
+        try {
+          const profileCheck = await axios.get(`https://poojaconnect.onrender.com/api/pandits/my-profile/${userId}`);
+          
+          if (profileCheck.data && profileCheck.data._id) {
+            // Profile exists -> Dashboard
+            navigate('/pandit-dashboard');
+          } else {
+            // No profile yet -> Activation Page
+            navigate('/manage-profile');
+          }
+        } catch (err) {
+          // If the profile fetch fails (e.g., 404), send them to create it
+          navigate('/manage-profile');
+        }
+      } 
+      else {
+        // Regular Users
+        navigate('/home'); 
       }
 
     } catch (err) {
