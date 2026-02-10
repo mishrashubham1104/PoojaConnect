@@ -28,21 +28,26 @@ const Login = () => {
     try {
       const res = await axios.post('https://poojaconnect.onrender.com/api/auth/login', { email, password });
       
-      // Store user data
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userId', res.data.userId);
-      localStorage.setItem('userName', res.data.userName);
-      localStorage.setItem('userEmail', res.data.userEmail);
-      localStorage.setItem('role', res.data.role);
-
-      toast.success(`Welcome back, ${res.data.userName}!`);
+      // ✅ 1. Store user data in LocalStorage
+      // Note: axios data is in res.data
+      const { token, userId, userName, role } = res.data;
       
-      // Redirect based on role
-      if (res.data.role === 'pandit') {
-        navigate('/pandit-dashboard');
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('userName', userName);
+      localStorage.setItem('role', role);
+
+      toast.success(`Welcome back, ${userName}!`);
+      
+      // ✅ 2. Role-Based Redirection Logic
+      if (role === 'admin') {
+        navigate('/admin-dashboard');
+      } else if (role === 'pandit') {
+        navigate('/pandit-dashboard'); // Redirect Pandit to their specific portal
       } else {
-        navigate('/');
+        navigate('/home'); // Redirect regular Users to the home/booking page
       }
+
     } catch (err) {
       toast.error(err.response?.data?.error || "Invalid email or password");
     } finally {
@@ -79,7 +84,6 @@ const Login = () => {
             <div>
               <div className="flex justify-between mb-1">
                 <label className="text-sm font-bold text-gray-700">Password</label>
-                {/* FORGOT PASSWORD LINK */}
                 <Link to="/forgot-password" size="sm" className="text-xs font-bold text-orange-600 hover:underline">
                   Forgot Password?
                 </Link>
