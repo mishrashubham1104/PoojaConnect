@@ -33,8 +33,10 @@ connectDB();
 const io = new Server(server, {
   cors: { 
     origin: "https://pooja-connect-frontend.vercel.app", 
-    methods: ["GET", "POST"] 
-  }
+    methods: ["GET", "POST"],
+    credentials: true
+  },
+  transports: ['websocket'] 
 });
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_for_dev'; 

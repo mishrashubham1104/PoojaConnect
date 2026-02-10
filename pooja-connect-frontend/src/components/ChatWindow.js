@@ -5,8 +5,10 @@ import toast from 'react-hot-toast';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { Send, User, Loader2, X } from 'lucide-react';
 
-const socket = io('https://poojaconnect.onrender.com', { autoConnect: false });
-
+const socket = io('https://poojaconnect.onrender.com', {
+  transports: ['websocket'], 
+  upgrade: false
+});
 const ChatWindow = ({ customReceiverId, customReceiverName }) => { 
   const { userId: urlReceiverId } = useParams();
   const location = useLocation();
