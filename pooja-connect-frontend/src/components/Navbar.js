@@ -10,7 +10,10 @@ import {
 // ✅ LogOut, X, and UserCircle removed from imports above as they are now used in MobileSidebar.js
 import MobileSidebar from './MobileSidebar'; 
 
-const socket = io.connect('https://pooja-backend.onrender.com');
+const socket = io('https://poojaconnect.onrender.com', {
+  transports: ['websocket'],
+  upgrade: false
+});
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
