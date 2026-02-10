@@ -100,9 +100,8 @@ const ManageProfile = () => {
         ? 'https://poojaconnect.onrender.com/api/pandits/profile' 
         : 'https://poojaconnect.onrender.com/api/pandits/add';
 
-      const res = await axios.post(endpoint, profileData);
-
-      const wasNewUser = !isExistingUser;
+     await axios.post(endpoint, profileData);
+     const wasNewUser = !isExistingUser;
       setIsExistingUser(true);
       toast.success(wasNewUser ? "Profile activated! 🙏" : "Changes synced! 🙏");
 
