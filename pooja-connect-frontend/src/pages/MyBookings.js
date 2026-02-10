@@ -15,7 +15,7 @@ const MyBookings = () => {
     const fetchMyBookings = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5000/api/bookings/user/${userId}`);
+        const res = await axios.get(`https://pooja-backend.onrender.com/api/bookings/user/${userId}`);
         console.log("My Bookings Data Array:", res.data);
         setBookings(res.data);
       } catch (err) {

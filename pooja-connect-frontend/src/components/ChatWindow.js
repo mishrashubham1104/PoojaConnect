@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { Send, User, Loader2, X } from 'lucide-react';
 
-const socket = io('http://localhost:5000', { autoConnect: false });
+const socket = io('https://pooja-backend.onrender.com', { autoConnect: false });
 
 const ChatWindow = ({ customReceiverId, customReceiverName }) => { 
   const { userId: urlReceiverId } = useParams();
@@ -49,7 +49,7 @@ const ChatWindow = ({ customReceiverId, customReceiverName }) => {
 
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5000/api/messages/${senderId}/${receiverId}`);
+        const res = await axios.get(`https://pooja-backend.onrender.com/api/messages/${senderId}/${receiverId}`);
         setChat(res.data);
       } catch (err) {
         console.error("Chat History Error:", err);

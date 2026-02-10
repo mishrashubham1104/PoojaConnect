@@ -14,7 +14,7 @@ const FindPandit = () => {
   useEffect(() => {
     const fetchPandits = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/pandits');
+        const res = await axios.get('https://pooja-backend.onrender.com/api/pandits');
         setPandits(res.data);
       } catch (err) {
         console.error("Error fetching pandits", err);

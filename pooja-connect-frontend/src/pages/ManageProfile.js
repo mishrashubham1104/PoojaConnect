@@ -26,7 +26,7 @@ const ManageProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/pandits/my-profile/${userId}`);
+        const res = await axios.get(`https://pooja-backend.onrender.com/api/pandits/my-profile/${userId}`);
         if (res.data) {
           setFormData({
             name: res.data.name || '',
@@ -80,7 +80,7 @@ const ManageProfile = () => {
         languages: formData.languages.split(',').map(l => l.trim())
       };
 
-      await axios.post('http://localhost:5000/api/pandits/profile', profileData);
+      await axios.post('https://pooja-backend.onrender.com/api/pandits/profile', profileData);
 
       const wasNewUser = !isExistingUser;
       setIsExistingUser(true);
@@ -99,7 +99,7 @@ const ManageProfile = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm("Are you sure? This will delete everything.")) {
       try {
-        await axios.delete(`http://localhost:5000/api/auth/delete-account/${userId}`);
+        await axios.delete(`https://pooja-backend.onrender.com/api/auth/delete-account/${userId}`);
         localStorage.clear();
         window.location.href = "/";
       } catch (err) {

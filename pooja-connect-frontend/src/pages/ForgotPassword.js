@@ -18,7 +18,7 @@ const ForgotPassword = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/forgot-password', { email });
+      const res = await axios.post('https://pooja-backend.onrender.com/api/auth/forgot-password', { email });
       toast.success(res.data.message);
     } catch (err) {
       toast.error(err.response?.data?.error || "Something went wrong");

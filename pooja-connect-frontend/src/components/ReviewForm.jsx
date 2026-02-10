@@ -36,7 +36,7 @@ const ReviewForm = ({ panditId, onReviewSubmit }) => {
       console.log("🚀 FRONTEND SENDING:", { panditId, storedUserId, rating, comment });
 
       // Submit to backend
-      await axios.post('http://localhost:5000/api/reviews', reviewData);
+      await axios.post('https://pooja-backend.onrender.com/api/reviews', reviewData);
       
       toast.success("Review submitted! 🙏");
       

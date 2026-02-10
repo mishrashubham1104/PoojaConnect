@@ -26,7 +26,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post('https://pooja-backend.onrender.com/api/auth/login', { email, password });
       
       // Store user data
       localStorage.setItem('token', res.data.token);
